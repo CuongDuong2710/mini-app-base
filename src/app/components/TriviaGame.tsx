@@ -56,25 +56,27 @@ export default function TriviaGame({ userFid, username }: TriviaGameProps) {
   const q = questions[currentQuestion];
 
   return (
-    <div className="p-4 flex-1 flex flex-col justify-center">
-      <h2 className="text-2xl font-bold mb-4">{q.question}</h2>
-      {q.options.map((opt, idx) => (
-        <div key={idx} className="mb-2">
-          <label className="flex items-center">
-            <input
-              type="radio"
-              checked={selectedOptions[currentQuestion] === idx}
-              onChange={() => handleSelect(idx)}
-              className="mr-2"
-            />
-            {opt}
-          </label>
-        </div>
-      ))}
+    <div className="p-4 flex-1 flex flex-col justify-center bg-white rounded-lg shadow-lg mx-4 my-4">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">{q.question}</h2>
+      <div className="space-y-3">
+        {q.options.map((opt, idx) => (
+          <div key={idx} className="mb-2">
+            <label className="flex items-center p-3 bg-gray-50 hover:bg-gray-100 rounded-lg cursor-pointer transition-colors">
+              <input
+                type="radio"
+                checked={selectedOptions[currentQuestion] === idx}
+                onChange={() => handleSelect(idx)}
+                className="mr-3 w-4 h-4 text-blue-600"
+              />
+              <span className="text-gray-700 text-lg">{opt}</span>
+            </label>
+          </div>
+        ))}
+      </div>
       <button
         onClick={handleNext}
         disabled={selectedOptions[currentQuestion] === undefined}
-        className="mt-4 bg-blue-500 text-white py-2 px-4 rounded disabled:opacity-50"
+        className="mt-6 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors"
       >
         {currentQuestion < questions.length - 1 ? 'Next' : 'Submit'}
       </button>

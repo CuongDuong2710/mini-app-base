@@ -1,22 +1,25 @@
 // app/components/AppLayout.tsx
 'use client';
 
-import { useMiniKit } from '@coinbase/onchainkit/minikit';
 import { ReactNode } from 'react';
 
 export default function AppLayout({ children }: { children: ReactNode }) {
-  const { context } = useMiniKit();
+  // Use fallback values for development - can be enhanced later with MiniKit context
+  const defaultSafeAreaInsets = {
+    top: 20,
+    bottom: 20,
+  };
 
   const style = {
-    paddingTop: `${context?.client?.safeAreaInsets?.top ?? 0}px`,
-    paddingBottom: `${context?.client?.safeAreaInsets?.bottom ?? 0}px`,
+    paddingTop: `${defaultSafeAreaInsets.top}px`,
+    paddingBottom: `${defaultSafeAreaInsets.bottom}px`,
     minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column' as const,
   };
 
   return (
-    <main style={style} className="bg-gradient-to-b from-slate-900 to-slate-800">
+    <main style={style} className="bg-gradient-to-b from-blue-50 to-blue-100 text-gray-900">
       {children}
     </main>
   );

@@ -24,13 +24,27 @@ export default function ResultsScreen({ score, userFid, username }: ResultsScree
 
   return (
     <div className="p-4 flex-1 flex flex-col justify-center items-center">
-      <h2 className="text-3xl font-bold mb-4">Your Score: {score}%</h2>
-      <button
-        onClick={handleShare}
-        className="bg-green-500 text-white py-2 px-4 rounded"
-      >
-        Share on Farcaster
-      </button>
+      <div className="bg-white rounded-lg shadow-lg p-8 mx-4 text-center max-w-md">
+        <div className="mb-6">
+          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl">🎉</span>
+          </div>
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">Congratulations!</h2>
+          <p className="text-lg text-gray-600 mb-4">Your Score:</p>
+          <div className="text-5xl font-bold text-green-600 mb-4">{score}%</div>
+        </div>
+        
+        <button
+          onClick={handleShare}
+          className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors w-full"
+        >
+          🚀 Share on Farcaster
+        </button>
+        
+        <p className="text-sm text-gray-500 mt-4">
+          Challenge your friends to beat your score!
+        </p>
+      </div>
     </div>
   );
 }

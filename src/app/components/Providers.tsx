@@ -1,6 +1,7 @@
 'use client'
 
 import { OnchainKitProvider } from '@coinbase/onchainkit';
+import { MiniKitProvider } from '@coinbase/onchainkit/minikit';
 import { base } from 'viem/chains';
 
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -14,7 +15,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
         },
       }}
     >
-      {children}
+      <MiniKitProvider>
+        {children}
+      </MiniKitProvider>
     </OnchainKitProvider>
   );
 }
