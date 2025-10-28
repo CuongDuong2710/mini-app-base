@@ -23,35 +23,65 @@ export default function ResultsScreen({ score, userFid, username }: ResultsScree
         `Try it now: ${process.env.NEXT_PUBLIC_URL}\n\n` +
         `#BaseTrivia #Farcaster #Web3Quiz`;
 
-      // Primary method: Direct URL with Warpcast compose
-      const warpcastUrl = `https://warpcast.com/~/compose?text=${encodeURIComponent(shareText)}`;
-      
-      console.log('Generated Warpcast URL:', warpcastUrl);
-      
-      // Try to open in the same window if in mobile/webview
-      if (window.parent !== window) {
-        // We're in an iframe/webview, try parent window
-        console.log('Opening in parent window');
-        window.parent.open(warpcastUrl, '_blank');
-      } else {
-        // Regular browser window
-        console.log('Opening in new window');
-        window.open(warpcastUrl, '_blank');
+      // Try to use Farcaster SDK for in-app sharing first
+      if (typeof window !== 'undefined' && window.parent !== window) {
+        // We're likely in Farcaster webview
+        try {
+          // Use postMessage to communicate with parent frame
+          window.parent.postMessage({
+            type: 'fc_frame',
+            method: 'share',
+            params: {
+              text: shareText
+            }
+          }, '*');
+          
+          console.log('Attempted Farcaster frame sharing');
+          return; // Exit early if successful
+        } catch (frameError) {
+          console.log('Frame sharing failed, trying SDK:', frameError);
+        }
+      }
+
+      // Fallback: Try SDK actions
+      try {
+        await sdk.actions.ready();
+        
+        // Try to use Farcaster SDK compose cast
+        if (sdk.actions.openUrl) {
+          const farcasterUrl = `farcaster://compose?text=${encodeURIComponent(shareText)}`;
+          await sdk.actions.openUrl(farcasterUrl);
+          console.log('Used Farcaster deep link');
+          return;
+        }
+      } catch (sdkError) {
+        console.log('SDK sharing failed:', sdkError);
+      }
+
+      // Final fallback: Copy to clipboard with better UX
+      try {
+        const fallbackText = `🎯 I scored ${score}% on Social Trivia! Can you beat me? ${process.env.NEXT_PUBLIC_URL}`;
+        await navigator.clipboard.writeText(fallbackText);
+        
+        // Show a better message for Farcaster users
+        if (confirm('Share text copied to clipboard!\n\nTap OK to go back and paste it in a new cast, or Cancel to stay here.')) {
+          // Try to go back in Farcaster
+          if (window.history.length > 1) {
+            window.history.back();
+          }
+        }
+      } catch (clipboardError) {
+        console.error('Clipboard failed:', clipboardError);
+        // Show manual sharing instructions
+        alert(`Copy this text and share on Farcaster:\n\n🎯 I scored ${score}% on Social Trivia! Can you beat me? ${process.env.NEXT_PUBLIC_URL}`);
       }
       
     } catch (error) {
       console.error('Share failed:', error);
       
-      // Fallback: Copy to clipboard
-      try {
-        const fallbackText = `🎯 I scored ${score}% on Social Trivia! Can you beat me? ${process.env.NEXT_PUBLIC_URL}`;
-        await navigator.clipboard.writeText(fallbackText);
-        alert('Share text copied to clipboard! Open Warpcast and paste it to share your score.');
-      } catch (clipboardError) {
-        console.error('Clipboard failed:', clipboardError);
-        // Show manual sharing instructions
-        alert(`Copy this text and share on Warpcast:\n\n🎯 I scored ${score}% on Social Trivia! Can you beat me? ${process.env.NEXT_PUBLIC_URL}`);
-      }
+      // Ultimate fallback
+      const fallbackText = `🎯 I scored ${score}% on Social Trivia! Can you beat me? ${process.env.NEXT_PUBLIC_URL}`;
+      alert(`Copy this text and share on Farcaster:\n\n${fallbackText}`);
     }
   };
 
@@ -62,6 +92,18 @@ export default function ResultsScreen({ score, userFid, username }: ResultsScree
     if (score >= 70) return "🥈 Great job! Solid knowledge!";
     if (score >= 60) return "🥉 Good work! Keep learning!";
     return "📚 Keep studying! You'll get better!";
+  };
+
+  // Simple copy to clipboard method for Farcaster
+  const handleSimpleShare = async () => {
+    const shareText = `🎯 I scored ${score}% on Social Trivia! Can you beat me? ${process.env.NEXT_PUBLIC_URL}`;
+    
+    try {
+      await navigator.clipboard.writeText(shareText);
+      alert('✅ Score copied!\n\nGo to Farcaster app and paste it in a new cast to share your score!');
+    } catch (error) {
+      alert(`Copy this text to share on Farcaster:\n\n${shareText}`);
+    }
   };
 
   return (
@@ -79,9 +121,16 @@ export default function ResultsScreen({ score, userFid, username }: ResultsScree
         
         <button
           onClick={handleShare}
-          className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors w-full mb-4"
+          className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors w-full mb-2"
         >
           🚀 Share on Farcaster
+        </button>
+        
+        <button
+          onClick={handleSimpleShare}
+          className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors w-full mb-4"
+        >
+          📋 Copy Score to Share
         </button>
         
         <button
