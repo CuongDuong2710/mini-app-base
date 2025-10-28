@@ -96,31 +96,89 @@ public/
 └── favicon.ico
 ```
 
-## 📱 Step 4: Register with Base Build
+## 📱 Step 4: Register with Farcaster (Official Process)
 
-### 4.1 Visit Base Build:
-Go to [https://build.base.org](https://build.base.org)
+### 4.1 Follow Official Farcaster Publishing Guide
+Reference: [https://miniapps.farcaster.xyz/docs/guides/publishing](https://miniapps.farcaster.xyz/docs/guides/publishing)
 
-### 4.2 Connect your account:
-- Connect your wallet
-- Connect your Farcaster account
+### 4.2 Create Farcaster Manifest File
+Create the required manifest file at `/.well-known/farcaster.json`:
 
-### 4.3 Submit your Mini App:
-1. Click "Submit App"
-2. Fill in the form:
-   - **App Name**: Social Trivia
-   - **App URL**: https://your-app-name.vercel.app
-   - **Description**: A fun trivia game testing knowledge about Base and Farcaster
-   - **Category**: Games
-   - **Icon URL**: https://your-app-name.vercel.app/icon.png
+1. **Create the directory structure:**
+```bash
+mkdir -p public/.well-known
+```
 
-### 4.4 Generate Farcaster association:
-The tool will generate:
-- `FARCASTER_HEADER`
-- `FARCASTER_PAYLOAD`
-- `FARCASTER_SIGNATURE`
+2. **Create farcaster.json file:**
+```json
+{
+  "miniapp": {
+    "version": "1",
+    "name": "Social Trivia",
+    "iconUrl": "https://social-trivia-quiz.vercel.app/icon.png",
+    "homeUrl": "https://social-trivia-quiz.vercel.app",
+    "splashImageUrl": "https://social-trivia-quiz.vercel.app/splash.png",
+    "splashBackgroundColor": "#2563eb",
+    "subtitle": "Base & Farcaster Quiz",
+    "description": "Test your knowledge with 20 questions about Base blockchain and Farcaster protocol.",
+    "primaryCategory": "games",
+    "tags": ["trivia", "base", "farcaster", "quiz", "education"],
+    "heroImageUrl": "https://social-trivia-quiz.vercel.app/hero.png",
+    "tagline": "Test your Web3 knowledge!",
+    "ogTitle": "Social Trivia Quiz",
+    "ogDescription": "Challenge yourself with Base and Farcaster questions!",
+    "ogImageUrl": "https://social-trivia-quiz.vercel.app/og.png"
+  }
+}
+```
 
-Add these to your Vercel environment variables.
+### 4.3 Generate Account Association (Ownership Verification)
+
+1. **Visit Farcaster Developer Tools:**
+   Go to: [https://farcaster.xyz/~/developers/mini-apps/manifest](https://farcaster.xyz/~/developers/mini-apps/manifest)
+
+2. **Create Account Association:**
+   - Enter your domain: `social-trivia-quiz.vercel.app`
+   - Connect your Farcaster account
+   - Generate the signed account association
+
+3. **Update farcaster.json with account association:**
+   Add the generated `accountAssociation` object to your farcaster.json file.
+
+### 4.4 Create Required Assets
+
+You need to create these image files in your `/public` folder:
+
+- **icon.png**: 1024x1024px PNG, no transparency
+- **splash.png**: 200x200px PNG 
+- **hero.png**: 1200x630px PNG (1.91:1 ratio)
+- **og.png**: 1200x630px PNG for Open Graph
+
+### 4.5 Deploy Updated Files
+
+```bash
+# Commit and deploy the new files
+git add .
+git commit -m "Add Farcaster manifest and assets"
+git push
+vercel --prod
+```
+
+### 4.6 Verify Manifest
+
+After deployment, verify your manifest is accessible:
+- Visit: `https://social-trivia-quiz.vercel.app/.well-known/farcaster.json`
+- Should return your JSON configuration
+```json
+{
+  "name": "Social Trivia",
+  "description": "Test your Base & Farcaster knowledge!",
+  "url": "https://your-app-name.vercel.app",
+  "icon": "https://your-app-name.vercel.app/icon.png",
+  "category": "games",
+  "tags": ["trivia", "base", "farcaster", "education"]
+}
+```
 
 ## 🔐 Step 5: Farcaster Developer Portal
 
@@ -167,23 +225,86 @@ Consider adding Sentry or similar for error tracking:
 npm install @sentry/nextjs
 ```
 
-## 🚀 Step 8: Go Live
+## � Step 8: Alternative Deployment Methods
 
-### 8.1 Final deployment:
+### 8.1 If build.base.org is unavailable:
+
+#### Method 1: Direct Social Sharing
+1. **Deploy to Vercel** (Steps 1-3 above)
+2. **Test your app** thoroughly 
+3. **Share directly on Farcaster:**
+   - Create a cast with your app URL
+   - Use hashtags: #Base #MiniApp #Trivia
+   - Tag relevant accounts: @base @coinbase
+
+#### Method 2: Community Submission
+1. **Join Base Discord**: https://discord.gg/base
+2. **Look for ecosystem channels**:
+   - #ecosystem-showcase
+   - #mini-apps
+   - #general
+3. **Share your project** with:
+   - App URL
+   - Description
+   - Screenshots
+   - Source code (if open source)
+
+#### Method 3: GitHub Pages Alternative
+If Vercel has issues, use GitHub Pages:
+
 ```bash
-vercel --prod
+# Install gh-pages
+npm install --save-dev gh-pages
+
+# Add to package.json scripts:
+"predeploy": "npm run build",
+"deploy": "gh-pages -d out"
+
+# Add to next.config.ts:
+const isProd = process.env.NODE_ENV === 'production';
+module.exports = {
+  assetPrefix: isProd ? '/your-repo-name/' : '',
+  output: 'export',
+  images: {
+    unoptimized: true
+  }
+};
+
+# Deploy
+npm run deploy
 ```
 
-### 8.2 Share your Mini App:
-Create launch casts on Farcaster:
-- Share the direct URL
-- Create engaging content about your trivia game
-- Tag relevant communities
+### 8.2 Manual Frame Creation:
+Create Farcaster Frame manually:
 
-### 8.3 Monitor performance:
-- Check Vercel deployment logs
-- Monitor user engagement
-- Gather feedback for improvements
+1. **Add meta tags to your layout.tsx**:
+```html
+<meta property="fc:frame" content="vNext" />
+<meta property="fc:frame:image" content="https://your-app.vercel.app/og.png" />
+<meta property="fc:frame:button:1" content="Play Trivia" />
+<meta property="fc:frame:post_url" content="https://your-app.vercel.app" />
+```
+
+2. **Test Frame with**:
+   - https://warpcast.com/~/developers/frames
+   - Paste your URL to validate Frame
+
+### 8.3 Current Working Resources (as of October 2024):
+
+✅ **Working URLs:**
+- Coinbase Developer Portal: https://portal.cdp.coinbase.com
+- Base Documentation: https://docs.base.org
+- Farcaster Developers: https://warpcast.com/~/developers
+- Base Discord: https://discord.gg/base
+- Vercel: https://vercel.com
+
+⚠️ **May be unavailable:**
+- build.base.org (use alternatives above)
+
+📱 **Testing your Mini App:**
+1. **In Warpcast mobile app**: Paste your URL
+2. **In browser**: Test responsive design
+3. **With Farcaster Frame validator**: Test Frame functionality
 
 ## 📝 Step 9: Post-Launch Optimization
 

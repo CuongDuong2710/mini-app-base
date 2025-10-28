@@ -1,0 +1,39 @@
+{
+  "name": "Social Trivia",
+  "short_name": "Social Trivia",
+  "description": "Test your Base & Farcaster knowledge with 20 fun quiz questions!",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["games", "education", "entertainment"],
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "app": {
+    "background": {
+      "scripts": []
+    }
+  },
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "farcaster": {
+    "type": "mini-app",
+    "category": "games",
+    "tags": ["trivia", "base", "farcaster", "education", "quiz"],
+    "permissions": ["profile", "cast"]
+  },
+  "base": {
+    "chain": "base",
+    "features": ["onchainkit", "social-sharing"],
+    "category": "games"
+  }
+}
