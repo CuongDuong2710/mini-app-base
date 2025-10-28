@@ -1,4 +1,9 @@
 {
+  "accountAssociation": {
+    "header": "eyJmaWQiOjE5Mjk5NSwidHlwZSI6ImF1dGgiLCJrZXkiOiIweDlBNzc3MUE4NkM4RGM0NUJlM2VCNEQ1MEU2QTk0NzEwNjA0NDBlNjEifQ",
+    "payload": "eyJkb21haW4iOiJzb2NpYWwtdHJpdmlhLXF1aXoudmVyY2VsLmFwcCJ9",
+    "signature": "H2en/sNeut6Eb9W6seolbXr0Y+685PenldM3XxDjzCpVHf1ECoWMt0P/8WYGd6M6ERW12/M5JnMIw0Cv17dgshw="
+  },
   "miniapp": {
     "version": "1",
     "name": "Social Trivia",
@@ -6,7 +11,7 @@
     "homeUrl": "https://social-trivia-quiz.vercel.app",
     "splashImageUrl": "https://social-trivia-quiz.vercel.app/splash.png",
     "splashBackgroundColor": "#2563eb",
-    "subtitle": "Base & Farcaster Quiz",
+    "subtitle": "Base Farcaster Quiz",
     "description": "Test your knowledge with 20 questions about Base blockchain and Farcaster protocol. Challenge friends and climb the leaderboard!",
     "primaryCategory": "games",
     "tags": ["trivia", "base", "farcaster", "quiz", "education"],
