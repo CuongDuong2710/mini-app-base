@@ -4,7 +4,7 @@ A fun interactive trivia game testing knowledge about Base blockchain and Farcas
 
 ## 🎮 Features
 
-- **20 Quiz Questions** covering Base blockchain and Farcaster protocol
+- **12 Quiz Questions** covering Base blockchain and Farcaster protocol
 - **Real-time Scoring** with percentage-based results
 - **Social Sharing** - Share scores directly to Farcaster
 - **Responsive Design** - Works seamlessly in Warpcast and web browsers
@@ -96,20 +96,19 @@ src/
 
 ## 🎯 Quiz Questions Preview
 
-The app includes 20 carefully crafted questions covering:
+The app includes 12 carefully crafted questions covering:
 
-1. **Base Fundamentals** (Questions 1-10)
+1. **Base Fundamentals** (Questions 1-8)
    - What is Base and its architecture?
    - Who built Base and when did it launch?
    - Technical details: consensus, fees, compatibility
 
-2. **Farcaster Protocol** (Questions 11-15)
+2. **Farcaster Protocol** (Questions 9-11)
    - Social protocol structure
-   - Decentralized hubs and data handling
    - Frames and interactive content
+   - Platform integration
 
-3. **Development & Integration** (Questions 16-20)
-   - Mini App frameworks and deployment
+3. **Development & Integration** (Question 12)
    - Smart contract languages
    - Cross-platform considerations
 

@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Social Trivia - Base & Farcaster Quiz",
-  description: "Test your knowledge with 20 questions about Base blockchain and Farcaster protocol!",
+  description: "Test your knowledge with 12 questions about Base blockchain and Farcaster protocol!",
   keywords: ["Base", "Farcaster", "Trivia", "Quiz", "Blockchain", "Web3", "Mini App"],
   authors: [{ name: "Social Trivia Team" }],
   creator: "Base Community",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   robots: "index, follow",
   openGraph: {
     title: "Social Trivia - Base & Farcaster Quiz",
-    description: "Challenge yourself with 20 questions about Base and Farcaster!",
+    description: "Challenge yourself with 12 questions about Base and Farcaster!",
     url: process.env.NEXT_PUBLIC_URL || 'https://social-trivia-quiz.vercel.app',
     siteName: "Social Trivia",
     images: [

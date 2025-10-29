@@ -1,12 +1,12 @@
 # 🧠 Base & Farcaster Quiz Questions
 
-This document contains all 20 quiz questions used in the Social Trivia Mini App, complete with answers and explanations.
+This document contains all 12 quiz questions used in the Social Trivia Mini App, complete with answers and explanations.
 
 ## 📊 Quiz Statistics
-- **Total Questions**: 20
+- **Total Questions**: 12
 - **Topics Covered**: Base Blockchain, Farcaster Protocol, Development
 - **Difficulty**: Beginner to Intermediate
-- **Time Estimate**: 5-10 minutes
+- **Time Estimate**: 3-5 minutes
 
 ---
 
@@ -238,11 +238,11 @@ This document contains all 20 quiz questions used in the Social Trivia Mini App,
 
 ## 📈 Scoring Guide
 
-- **18-20 correct**: Expert Level 🏆
-- **15-17 correct**: Advanced Level 🥇
-- **12-14 correct**: Intermediate Level 🥈
-- **9-11 correct**: Beginner Level 🥉
-- **8 or below**: Keep learning! 📚
+- **11-12 correct**: Expert Level 🏆
+- **9-10 correct**: Advanced Level 🥇
+- **7-8 correct**: Intermediate Level 🥈
+- **5-6 correct**: Beginner Level 🥉
+- **4 or below**: Keep learning! 📚
 
 ## 🎯 Learning Resources
 

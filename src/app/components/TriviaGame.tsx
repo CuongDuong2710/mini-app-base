@@ -25,11 +25,6 @@ const questions = [
     correct: 1,
   },
   {
-    question: 'What consensus mechanism does Base use?',
-    options: ['Proof of Work', 'Proof of Stake', 'Delegated Proof of Stake', 'Optimistic Rollup'],
-    correct: 3,
-  },
-  {
     question: 'Which company built Base?',
     options: ['Ethereum Foundation', 'Coinbase', 'ConsenSys', 'Polygon'],
     correct: 1,
@@ -60,16 +55,6 @@ const questions = [
     correct: 1,
   },
   {
-    question: 'Farcaster uses which data structure for social graphs?',
-    options: ['Centralized database', 'IPFS', 'Hubs (decentralized)', 'Blockchain only'],
-    correct: 2,
-  },
-  {
-    question: 'Base transaction fees are paid in:',
-    options: ['BASE tokens', 'ETH', 'USDC', 'Gas tokens'],
-    correct: 1,
-  },
-  {
     question: 'What is a Farcaster Frame?',
     options: ['A photo filter', 'Interactive content in casts', 'A wallet interface', 'A smart contract'],
     correct: 1,
@@ -80,33 +65,8 @@ const questions = [
     correct: 1,
   },
   {
-    question: 'Mini Apps can interact with:',
-    options: ['Only Farcaster', 'Only Base', 'Both Farcaster and Base', 'Neither'],
-    correct: 2,
-  },
-  {
-    question: 'What is the Base block time?',
-    options: ['1 second', '2 seconds', '12 seconds', '15 seconds'],
-    correct: 1,
-  },
-  {
-    question: 'Farcaster usernames are called:',
-    options: ['Handles', 'Fnames', 'Casts', 'Profiles'],
-    correct: 1,
-  },
-  {
-    question: 'Base uses which scaling solution?',
-    options: ['State channels', 'Plasma', 'Optimistic rollups', 'zk-rollups'],
-    correct: 2,
-  },
-  {
     question: 'What programming language is used for Base smart contracts?',
     options: ['Rust', 'Solidity', 'Move', 'Cairo'],
-    correct: 1,
-  },
-  {
-    question: 'Mini Apps are deployed on:',
-    options: ['App stores only', 'Web platforms', 'Blockchain directly', 'IPFS only'],
     correct: 1,
   },
 ];

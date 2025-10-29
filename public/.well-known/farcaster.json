@@ -12,7 +12,7 @@
     "splashImageUrl": "https://social-trivia-quiz.vercel.app/splash.png",
     "splashBackgroundColor": "#2563eb",
     "subtitle": "Base Farcaster Quiz",
-    "description": "Test your knowledge with 20 questions about Base blockchain and Farcaster protocol. Challenge friends and climb the leaderboard!",
+    "description": "Test your knowledge with 12 questions about Base blockchain and Farcaster protocol. Quick and fun quiz game!",
     "primaryCategory": "games",
     "tags": ["trivia", "base", "farcaster", "quiz", "education"],
     "heroImageUrl": "https://social-trivia-quiz.vercel.app/hero.png",
