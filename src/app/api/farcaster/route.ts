@@ -36,7 +36,7 @@ export async function GET() {
       ogImageUrl: process.env.NEXT_PUBLIC_APP_OG_IMAGE,
     }),
     baseBuilder: {
-      allowedAddresses: ["0xYourVerifiedBaseAddressHere"],  // Thêm address của bạn
+      allowedAddresses: ["0x9A7771A86C8Dc45Be3eB4D50E6A9471060440e61"],  // Thêm address của bạn
     },
   });
 }
